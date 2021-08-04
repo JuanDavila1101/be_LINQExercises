@@ -143,17 +143,43 @@ namespace LINQExercises
       // Check Range of number 
       // Check join  numbers
 
+      var pikachu = new Animal("Electric", 24, 10, "Pikachu");
+      var charzar = new Animal("Water, Electric, Rock", 72, 250, "Charizar");
+      var bulbasaur = new Animal("Grass, Poison", 12, 450, "Bulbasaur");
+      var jigglyPuff = new Animal("Poison, Steel", 9, 5, "JigglyPuff");
 
+      var AnimalList = new List<Animal> { pikachu, charzar, bulbasaur, jigglyPuff };
 
+      // Defered excecution
+      //var animalsThatStartWithC = AnimalList.Where(animal => animal.Type.StartsWith('C'));
+      //Console.WriteLine($"\n\nAnimals that starty with \"C\" {string.Join(',', animalsThatStartWithC)}");
 
+      //var animalsThatStartWithC = AnimalList.Where(animal => animal.Name.StartsWith('C')).ToList();
+      //Console.WriteLine($"\n\nAnimals that starty with \"C\" {string.Join(',', animalsThatStartWithC)}");
 
+      Console.WriteLine("\n\nWHERE \n\n");
+      var animalsThatStartWithC = AnimalList.Where(animal => animal.Name.ToLower().StartsWith('c'));
+      //Console.WriteLine($"\n\nAnimals that starty with \"C\" { animalsThatStartWithC }\n\n"); // This is not valid
 
+      foreach (var animal in animalsThatStartWithC)
+      {
+        Console.WriteLine($"{animal.Name}");
+      }
 
+      Console.WriteLine("\n\nGROUP BY \n\n");
+      // Group collection by a given key (based on a function)
+      var groupAnimals = AnimalList.GroupBy(animal => animal.Name.First());
 
+      foreach (var animal2 in groupAnimals)
+      {
+        //Console.WriteLine(animal2.Key);
 
+        foreach (var animal in animal2)
+        {
+          Console.WriteLine(animal.Name);
+        }
+      }
 
-
-      
 
     }
   }
